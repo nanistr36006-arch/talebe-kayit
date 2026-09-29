@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#6d1a1c"/>
+<title>Talebe Hüviyet ve Özlük Varakası - Ehl-i Kur'ân Derneği</title>
+<style>
+@page { size: A4 portrait; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { padding: 24px 0 40px; margin: 0 auto; max-width: 900px; font-family: Georgia, 'Times New Roman', serif; color: #2b211b; }
+.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+
+.form-toolbar { position: sticky; top: 8px; z-index: 30; max-width: 900px; margin: 0 auto 10px; padding: 8px 10px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; background: rgba(255,255,255,.96); border: 1px solid #ddd2c3; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.form-toolbar button { appearance: none; border: 1px solid #6d1a1c; background: #6d1a1c; color: #fff; border-radius: 6px; padding: 8px 12px; min-height: 38px; font: 600 13px/1.2 Georgia, serif; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+.form-toolbar button:hover { background: #8a2326; }
+.form-toolbar button.gold { background: #c5a059; border-color: #9b793f; color: #2b211b; }
+.form-toolbar button.light { background: #fff; color: #6d1a1c; }
+.form-toolbar button.lang { background: #2b211b; border-color: #2b211b; }
+.form-toolbar .save-status { font: 12px/1.2 Arial, sans-serif; color: #6d1a1c; min-height: 16px; margin-left: auto; font-weight: 600; }
+
+.page { height: 297mm; margin: 0 auto 12px; padding: 14mm 16mm 10mm; background: #fcf9f2; border: 1px solid rgba(0,0,0,.12); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.page-content { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.page-footer { flex-shrink: 0; margin-top: auto; padding-top: 3mm; border-top: 1px solid #c5a059; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 8.5pt; color: #6d1a1c; }
+.outer-border { border: 3px double #6d1a1c; padding: 4px; height: 100%; display: flex; flex-direction: column; }
+.inner-border { border: 1px solid #c5a059; padding: 12px 16px; height: 100%; display: flex; flex-direction: column; background: #fdfbf7; }
+
+.masthead { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 2px solid #6d1a1c; padding-bottom: 8px; margin-bottom: 10px; }
+.logo-box { width: 130px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.logo-svg { width: 100px; height: 100px; display: block; margin-bottom: 2px; }
+.logo-caption { font-size: 7.5pt; font-weight: bold; color: #7a1e1e; font-family: Georgia, serif; letter-spacing: 0.3px; }
+.title-box { text-align: center; flex-grow: 1; min-width: 0; padding: 0 10px; }
+.sub-header-text { font-size: 9.5pt; letter-spacing: 1.5px; color: #6d1a1c; text-transform: uppercase; font-weight: bold; margin-bottom: 2px; }
+.main-title { font-size: 15pt; font-weight: bold; color: #6d1a1c; margin: 0; letter-spacing: 0.8px; text-transform: uppercase; }
+.title-subtitle { font-size: 9.5pt; color: #c5a059; margin-top: 3px; font-weight: bold; }
+
+.photo-box { width: 100px; height: 125px; border: 2px dashed #c5a059; background: #faf5eb; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4px; flex-shrink: 0; position: relative; cursor: pointer; overflow: hidden; }
+.photo-box:hover { background: #f0e6d6; border-color: #6d1a1c; }
+.photo-box .photo-label-top { font-size: 7.5pt; font-weight: bold; color: #6d1a1c; z-index: 1; }
+.photo-box .photo-label-sub { font-size: 7pt; color: #7a6b5d; margin-top: 4px; z-index: 1; line-height: 1.3; }
+#photo-preview { display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 2; }
+#remove-photo-btn { display: none; position: absolute; top: 4px; right: 4px; background: rgba(255,255,255,.92); border: 1px solid #6d1a1c; color: #6d1a1c; border-radius: 50%; width: 20px; height: 20px; padding: 0; font-size: 11px; line-height: 18px; text-align: center; cursor: pointer; z-index: 3; }
+
+.top-meta { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; gap: 6px 22px; font-size: 8.5pt; color: #6d1a1c; font-weight: bold; margin-bottom: 6px; }
+.top-meta .meta-item { display: flex; align-items: baseline; gap: 6px; }
+.top-meta input { border: 0; border-bottom: 1px solid #6d1a1c; background: transparent; padding: 0 6px; font: inherit; color: #1a1615; min-width: 110px; text-align: center; }
+
+.section-header { background: #6d1a1c; color: #fff; padding: 4px 10px; font-size: 10pt; font-weight: bold; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; margin-bottom: 8px; border-left: 4px solid #c5a059; }
+.section-header .latin-title { font-size: 8.5pt; font-weight: normal; opacity: .9; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px 12px; }
+.field-group { display: flex; align-items: baseline; font-size: 9.5pt; border-bottom: 1px dotted #b8a690; padding-bottom: 2px; }
+.field-label { font-weight: bold; color: #4a3427; white-space: nowrap; margin-inline-end: 6px; font-size: 9pt; flex-shrink: 0; }
+.field-value { appearance: none; border: 0; background: transparent; color: #1a1615; min-width: 0; flex-grow: 1; min-height: 18px; padding: 1px 2px 2px; outline: none; font: inherit; width: auto; }
+.field-value:focus { background: rgba(197,160,89,.10); }
+input[type="date"].field-value { min-width: 145px; }
+
+.consent-row { display: flex; align-items: flex-start; gap: 8px; font-size: 8.5pt; color: #4a3427; line-height: 1.45; padding: 8px 2px 2px; }
+.consent-row input[type="checkbox"] { width: 15px; height: 15px; flex-shrink: 0; accent-color: #6d1a1c; }
+.divider-ornament { text-align: center; margin: 10px 0; color: #c5a059; font-size: 11pt; }
+
+.approval-container { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding-top: 10px; border-top: 1px solid #e8dec8; }
+.approval-box { text-align: center; width: 30%; }
+.approval-title { font-size: 9pt; font-weight: bold; color: #6d1a1c; margin-bottom: 4px; }
+.approval-sub { font-size: 8pt; color: #665548; }
+.approval-line { border-bottom: 1px solid #b8a690; margin: 26px 6px 6px; }
+.approval-date { font-size: 8pt; color: #665548; display: flex; justify-content: center; align-items: center; gap: 4px; }
+.approval-date input { border: 0; border-bottom: 1px dotted #b8a690; background: transparent; font: inherit; color: #2b211b; padding: 1px 2px; width: 118px; text-align: center; }
+.seal-circle { width: 80px; height: 80px; border: 2px dashed #6d1a1c; border-radius: 50%; margin: 6px auto 0; display: flex; align-items: center; justify-content: center; font-size: 7.5pt; color: #6d1a1c; text-align: center; transform: rotate(-5deg); line-height: 1.25; }
+
+.modal-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(43,33,27,.65); padding: 20px; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal-box { background: #fcf9f2; border: 2px solid #6d1a1c; border-radius: 10px; width: 100%; max-width: 760px; max-height: 92vh; display: flex; flex-direction: column; overflow: hidden; }
+.modal-header { background: #6d1a1c; color: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #c5a059; }
+.modal-header h2 { margin: 0; font-size: 14pt; }
+.modal-close { background: transparent; border: 1px solid rgba(255,255,255,.4); color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; }
+.modal-toolbar { padding: 10px 16px; display: flex; gap: 10px; background: #fdfbf7; border-bottom: 1px solid #e8dec8; }
+.modal-toolbar input[type="search"] { flex: 1; padding: 8px 12px; border: 1px solid #c5a059; border-radius: 6px; font: 13px Georgia, serif; outline: none; }
+.record-count { font: 12px Georgia, serif; color: #6d1a1c; font-weight: bold; white-space: nowrap; }
+.modal-body { flex: 1; overflow-y: auto; padding: 10px 12px; }
+.empty-msg { text-align: center; color: #8f8377; font-style: italic; padding: 40px 20px; font-size: 11pt; }
+.record-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #e8dec8; border-radius: 8px; background: #fff; margin-bottom: 8px; }
+.record-thumb { width: 46px; height: 56px; border: 1px solid #c5a059; border-radius: 4px; background: #faf5eb; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #c5a059; }
+.record-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.record-info { flex: 1; min-width: 0; }
+.record-name { font: bold 12pt Georgia, serif; color: #2b211b; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.record-meta { font: 10.5px Georgia, serif; color: #665548; display: flex; gap: 12px; flex-wrap: wrap; }
+.record-actions { display: flex; gap: 6px; }
+.record-actions button { border: 1px solid #6d1a1c; background: #fff; color: #6d1a1c; border-radius: 6px; padding: 6px 10px; font: 600 11px Georgia, serif; cursor: pointer; }
+.record-actions button.open { background: #6d1a1c; color: #fff; }
+.record-actions button.del { border-color: #c0392b; color: #c0392b; }
+.modal-footer { padding: 12px 16px; background: #fdfbf7; border-top: 1px solid #e8dec8; display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.modal-btn { border: 1px solid #6d1a1c; background: #6d1a1c; color: #fff; border-radius: 6px; padding: 9px 14px; font: 600 12px Georgia, serif; cursor: pointer; min-height: 38px; }
+.modal-btn.light { background: #fff; color: #6d1a1c; }
+.modal-btn.danger { background: #c0392b; border-color: #962d22; }
+.modal-btn.excel { background: #1f7244; border-color: #155934; }
+.modal-btn.print-all { background: #2b6cb0; border-color: #1f4f80; }
+
+.confirm-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(43,33,27,.7); padding: 20px; align-items: center; justify-content: center; }
+.confirm-overlay.open { display: flex; }
+.confirm-box { background: #fcf9f2; border: 2px solid #6d1a1c; border-radius: 12px; width: 100%; max-width: 380px; overflow: hidden; }
+.confirm-header { background: #6d1a1c; color: #fff; padding: 12px 16px; font-size: 12pt; font-weight: bold; border-bottom: 3px solid #c5a059; }
+.confirm-message { padding: 20px 18px; font-size: 11pt; color: #2b211b; line-height: 1.5; white-space: pre-line; text-align: center; }
+.confirm-buttons { display: flex; gap: 8px; padding: 0 16px 16px; }
+.confirm-btn { flex: 1; border: 1px solid #6d1a1c; border-radius: 8px; padding: 12px 16px; font: 600 13px Georgia, serif; cursor: pointer; min-height: 44px; }
+.confirm-btn.cancel { background: #fff; color: #6d1a1c; }
+.confirm-btn.ok { background: #6d1a1c; color: #fff; }
+.confirm-btn.ok.danger { background: #c0392b; }
+
+.print-all-container { display: none; }
+
+body.lang-ottoman .logo-caption, body.lang-ottoman .sub-header-text, body.lang-ottoman .title-subtitle, body.lang-ottoman .photo-label-top, body.lang-ottoman .photo-label-sub, body.lang-ottoman .field-label, body.lang-ottoman .section-header > span:first-child, body.lang-ottoman .top-meta label, body.lang-ottoman .consent-row label { direction: rtl; }
+
+@media screen and (max-width: 760px) {
+    body { padding: 8px 0 20px; max-width: none; }
+    .form-toolbar { margin: 0 8px 8px; gap: 6px; top: 4px; }
+    .form-toolbar button { flex: 1 1 calc(50% - 6px); font-size: 12px; padding: 8px 7px; }
+    .form-toolbar .save-status { flex: 1 1 100%; text-align: center; margin-left: 0; }
+    .page { margin: 0 auto 8px; padding: 8px 8px 10px; height: auto; min-height: 0; border: none; }
+    .outer-border, .inner-border, .page-content { height: auto; min-height: 0; }
+    .outer-border, .inner-border { display: block; }
+    .page-content { display: block; }
+    .inner-border { padding: 10px 9px; }
+    .masthead { display: grid; grid-template-columns: 68px minmax(0,1fr) 78px; gap: 5px; align-items: center; }
+    .logo-box { width: 68px; }
+    .logo-svg { width: 58px; height: 58px; }
+    .logo-caption { font-size: 6.5pt; }
+    .main-title { font-size: 11pt; }
+    .sub-header-text { font-size: 7.8pt; }
+    .title-subtitle { font-size: 8pt; }
+    .photo-box { width: 78px; height: 98px; }
+    .photo-box .photo-label-top { font-size: 6.6pt; }
+    .photo-box .photo-label-sub { font-size: 6.2pt; }
+    .top-meta { justify-content: flex-start; gap: 4px 12px; font-size: 8pt; }
+    .top-meta input { min-width: 84px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 6px; }
+    .field-group { display: block; font-size: 9pt; }
+    .field-label { display: block; white-space: normal; margin: 0 0 3px; font-size: 8.5pt; }
+    .field-value { display: block; width: 100%; min-height: 30px; padding: 5px 2px; }
+    input[type="date"].field-value { min-width: 0; }
+    .section-header { font-size: 9pt; padding: 5px 8px; flex-wrap: wrap; }
+    .approval-container { flex-direction: column; align-items: stretch; gap: 18px; }
+    .approval-box { width: 100%; }
+    .modal-overlay { padding: 0; }
+    .modal-box { max-width: none; height: 100vh; border-radius: 0; border: none; }
+    .modal-footer { justify-content: stretch; }
+    .modal-footer .modal-btn { flex: 1 1 calc(50% - 4px); }
+}
+
+@media print {
+    @page { size: A4 portrait; margin: 0; }
+    *, *::before, *::after { box-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body { background: #fff !important; padding: 0 !important; margin: 0 !important; max-width: none !important; }
+    .form-toolbar, .no-print, .modal-overlay, .confirm-overlay { display: none !important; }
+    
+    /* Tek sayfa normal yazdırma */
+    body:not(.printing-all) form#student-form .page {
+        margin: 0 !important;
+        padding: 8mm 10mm 6mm !important;
+        border: none !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
+        overflow: hidden !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+    body:not(.printing-all) .outer-border { padding: 3px !important; }
+    body:not(.printing-all) .inner-border { padding: 8px 12px !important; }
+    body:not(.printing-all) .masthead { padding-bottom: 6px !important; margin-bottom: 8px !important; }
+    body:not(.printing-all) .logo-svg { width: 80px !important; height: 80px !important; }
+    body:not(.printing-all) .main-title { font-size: 13pt !important; }
+    body:not(.printing-all) .sub-header-text { font-size: 8.5pt !important; }
+    body:not(.printing-all) .title-subtitle { font-size: 8.5pt !important; }
+    body:not(.printing-all) .photo-box { width: 85px !important; height: 105px !important; }
+    body:not(.printing-all) .section-header { margin-top: 6px !important; margin-bottom: 6px !important; padding: 3px 8px !important; font-size: 9pt !important; }
+    body:not(.printing-all) .grid-2, body:not(.printing-all) .grid-3 { gap: 5px 12px !important; }
+    body:not(.printing-all) .field-group { padding-bottom: 1px !important; font-size: 9pt !important; }
+    body:not(.printing-all) .field-label { font-size: 8.5pt !important; }
+    body:not(.printing-all) .field-value { min-height: 16px !important; padding: 0 2px 1px !important; }
+    body:not(.printing-all) .consent-row { padding: 4px 2px 0 !important; font-size: 8pt !important; }
+    body:not(.printing-all) .divider-ornament { margin: 4px 0 !important; font-size: 9pt !important; }
+    body:not(.printing-all) .approval-container { padding-top: 6px !important; }
+    body:not(.printing-all) .approval-line { margin: 18px 6px 4px !important; }
+    body:not(.printing-all) .seal-circle { width: 65px !important; height: 65px !important; font-size: 6.5pt !important; }
+    body:not(.printing-all) .page-footer { padding-top: 2mm !important; font-size: 7.5pt !important; }
+    
+    /* Hepsini yazdırma modu */
+    body.printing-all form#student-form,
+    body.printing-all > .form-toolbar { display: none !important; }
+    body.printing-all .print-all-container { display: block !important; }
+    body.printing-all .print-all-container .page {
+        display: flex !important;
+        margin: 0 !important;
+        padding: 8mm 10mm 6mm !important;
+        border: none !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
+        overflow: hidden !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+    body.printing-all .print-all-container .page:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+    }
+    body.printing-all .print-all-container .outer-border { padding: 3px !important; }
+    body.printing-all .print-all-container .inner-border { padding: 8px 12px !important; }
+    body.printing-all .print-all-container .masthead { padding-bottom: 6px !important; margin-bottom: 8px !important; }
+    body.printing-all .print-all-container .logo-svg { width: 80px !important; height: 80px !important; }
+    body.printing-all .print-all-container .main-title { font-size: 13pt !important; }
+    body.printing-all .print-all-container .sub-header-text { font-size: 8.5pt !important; }
+    body.printing-all .print-all-container .title-subtitle { font-size: 8.5pt !important; }
+    body.printing-all .print-all-container .photo-box { width: 85px !important; height: 105px !important; }
+    body.printing-all .print-all-container .section-header { margin-top: 6px !important; margin-bottom: 6px !important; padding: 3px 8px !important; font-size: 9pt !important; }
+    body.printing-all .print-all-container .grid-2,
+    body.printing-all .print-all-container .grid-3 { gap: 5px 12px !important; }
+    body.printing-all .print-all-container .field-group { padding-bottom: 1px !important; font-size: 9pt !important; }
+    body.printing-all .print-all-container .field-label { font-size: 8.5pt !important; }
+    body.printing-all .print-all-container .field-value { min-height: 16px !important; padding: 0 2px 1px !important; }
+    body.printing-all .print-all-container .consent-row { padding: 4px 2px 0 !important; font-size: 8pt !important; }
+    body.printing-all .print-all-container .divider-ornament { margin: 4px 0 !important; font-size: 9pt !important; }
+    body.printing-all .print-all-container .approval-container { padding-top: 6px !important; }
+    body.printing-all .print-all-container .approval-line { margin: 18px 6px 4px !important; }
+    body.printing-all .print-all-container .seal-circle { width: 65px !important; height: 65px !important; font-size: 6.5pt !important; }
+    body.printing-all .print-all-container .page-footer { padding-top: 2mm !important; font-size: 7.5pt !important; }
+    
+    .field-value, .top-meta input, .approval-date input { background: transparent !important; }
+}
+</style>
+</head>
+<body class="lang-tr">
+
+<div class="form-toolbar no-print">
+    <button type="button" id="btn-lang" class="lang">🌐 <span id="btn-lang-text">TR</span></button>
+    <button type="button" id="btn-save">💾 <span data-i18n="btn.save">Kaydet</span></button>
+    <button type="button" id="btn-list" class="gold">📋 <span data-i18n="btn.list">Liste</span></button>
+    <button type="button" id="btn-download" class="gold">📥 <span data-i18n="btn.download">İndir</span></button>
+    <button type="button" id="btn-print">🖨️ <span data-i18n="btn.print">Yazdır</span></button>
+    <button type="button" id="btn-clear" class="light">↺ <span data-i18n="btn.clear">Temizle</span></button>
+    <span class="save-status" id="save-status"></span>
+</div>
+
+<form id="student-form" autocomplete="off">
+<section class="page">
+<div class="outer-border">
+<div class="inner-border">
+<div class="page-content">
+
+    <div class="top-meta">
+        <div class="meta-item"><label for="archive-number" data-i18n="meta.archive">Kayıt No:</label><input id="archive-number" type="text"/></div>
+        <div class="meta-item"><label for="field-22" data-i18n="meta.date">Kayıt Tarihi:</label><input id="field-22" type="date"/></div>
+    </div>
+
+    <header class="masthead">
+        <div class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+                <g fill="#7a1e1e">
+                    <path d="M50 4 C53 10 58 20 58 28 C58 34 55 38 50 40 C45 38 42 34 42 28 C42 20 47 10 50 4 Z"/>
+                    <path d="M96 50 C90 53 80 58 72 58 C66 58 62 55 60 50 C62 45 66 42 72 42 C80 42 90 47 96 50 Z"/>
+                    <path d="M50 96 C47 90 42 80 42 72 C42 66 45 62 50 60 C55 62 58 66 58 72 C58 80 53 90 50 96 Z"/>
+                    <path d="M4 50 C10 47 20 42 28 42 C34 42 38 45 40 50 C38 55 34 58 28 58 C20 58 10 53 4 50 Z"/>
+                    <path d="M79 21 C75 28 68 36 62 40 C58 42 54 42 52 40 C52 36 54 32 58 28 C64 22 74 20 79 21 Z"/>
+                    <path d="M21 21 C28 25 36 32 40 38 C42 42 42 46 40 48 C36 48 32 46 28 42 C22 36 20 26 21 21 Z"/>
+                    <path d="M79 79 C72 75 64 68 60 62 C58 58 58 54 60 52 C64 52 68 54 72 58 C78 64 80 74 79 79 Z"/>
+                    <path d="M21 79 C25 72 32 64 38 60 C42 58 46 58 48 60 C48 64 46 68 42 72 C36 78 26 80 21 79 Z"/>
+                </g>
+                <g fill="#fdfbf7">
+                    <path d="M50 38 C52 42 54 46 54 50 C54 53 52 55 50 55 C48 55 46 53 46 50 C46 46 48 42 50 38 Z"/>
+                    <path d="M62 50 C58 52 54 54 50 54 C47 54 45 52 45 50 C45 48 47 46 50 46 C54 46 58 48 62 50 Z"/>
+                    <path d="M50 62 C48 58 46 54 46 50 C46 47 48 45 50 45 C52 45 54 47 54 50 C54 54 52 58 50 62 Z"/>
+                    <path d="M38 50 C42 48 46 46 50 46 C53 46 55 48 55 50 C55 52 53 54 50 54 C46 54 42 52 38 50 Z"/>
+                </g>
+                <g fill="#7a1e1e"><path d="M50 43 L52 48 L57 50 L52 52 L50 57 L48 52 L43 50 L48 48 Z"/></g>
+                <path d="M50 46 L51 49 L54 50 L51 51 L50 54 L49 51 L46 50 L49 49 Z" fill="#fdfbf7"/>
+            </svg>
+            <span class="logo-caption" data-i18n="logo.caption">EHL-İ KUR'ÂN</span>
+        </div>
+
+        <div class="title-box">
+            <div class="sub-header-text" data-i18n="header.org">Ehl-i Kur'ân Derneği</div>
+            <h1 class="main-title" data-i18n="header.title">Talebe Hüviyet ve Özlük Varakası</h1>
+            <div class="title-subtitle" data-i18n="header.subtitle">Öğrenci Kayıt ve Takip Formu</div>
+        </div>
+
+        <div class="photo-box" id="photo-box" role="button" tabindex="0">
+            <img alt="Fotoğraf" id="photo-preview"/>
+            <button type="button" class="no-print" id="remove-photo-btn">✕</button>
+            <span class="photo-label-top" data-i18n="photo.top">SÛRET-İ ŞEMSİYYE</span>
+            <span class="photo-label-sub" data-i18n="photo.sub">📷<br/>Resim Ekle<br/>(Tıklayınız)</span>
+            <input accept="image/*" id="photo-upload" class="visually-hidden" type="file"/>
+        </div>
+    </header>
+
+    <div class="section-header"><span data-i18n="sec1.title">ŞAHSİYYAT VE KÜNYE</span><span class="latin-title" data-i18n="sec1.latin">I. ŞAHSİ BİLGİLER</span></div>
+
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-1" data-i18n="f1">İsmi ve Şöhreti:</label><input class="field-value" id="field-1" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-2" data-i18n="f2">T.C. Kimlik / Sicil No:</label><input class="field-value" id="field-2" type="text" inputmode="numeric"/></div>
+    </div>
+    <div class="grid-3">
+        <div class="field-group"><label class="field-label" for="field-3" data-i18n="f3">Talebe Numarası:</label><input class="field-value" id="field-3" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-4" data-i18n="f4">Sınıfı / Dairesi:</label><input class="field-value" id="field-4" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-5" data-i18n="f5">Şubesi:</label><input class="field-value" id="field-5" type="text"/></div>
+    </div>
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-6" data-i18n="f6">Doğum Yeri:</label><input class="field-value" id="field-6" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-7" data-i18n="f7">Doğum Tarihi:</label><input class="field-value" id="field-7" type="date"/></div>
+    </div>
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-8" data-i18n="f8">Tabiiyeti (Uyruk):</label><input class="field-value" id="field-8" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-9" data-i18n="f9">Kan Grubu:</label><input class="field-value" id="field-9" type="text"/></div>
+    </div>
+
+    <div class="section-header"><span data-i18n="sec2.title">HANEDAN VE VELİ BİLGİLERİ</span><span class="latin-title" data-i18n="sec2.latin">II. AİLE VE İLETİŞİM</span></div>
+
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-10" data-i18n="f10">Baba Adı:</label><input class="field-value" id="field-10" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-11" data-i18n="f11">Baba Mesleği:</label><input class="field-value" id="field-11" type="text"/></div>
+    </div>
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-12" data-i18n="f12">Veli Yakınlığı:</label><input class="field-value" id="field-12" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-13" data-i18n="f13">Veli Adı Soyadı:</label><input class="field-value" id="field-13" type="text"/></div>
+    </div>
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-14" data-i18n="f14">İletişim Tel. (Birincil):</label><input class="field-value" id="field-14" type="tel" inputmode="tel"/></div>
+        <div class="field-group"><label class="field-label" for="field-15" data-i18n="f15">İletişim Tel. (Yedek):</label><input class="field-value" id="field-15" type="tel" inputmode="tel"/></div>
+    </div>
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-16" data-i18n="f16">Ev Adresi:</label><input class="field-value" id="field-16" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-23" data-i18n="f23">E-posta:</label><input class="field-value" id="field-23" type="email" inputmode="email"/></div>
+    </div>
+
+    <div class="section-header"><span data-i18n="sec3.title">TAHSİLAT VE DERS DURUMU</span><span class="latin-title" data-i18n="sec3.latin">III. EĞİTİM VE SAĞLIK</span></div>
+
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-17" data-i18n="f17">Kayıt Tarihi:</label><input class="field-value" id="field-17" type="date"/></div>
+        <div class="field-group"><label class="field-label" for="field-18" data-i18n="f18">Hafızlık Seviyesi:</label><input class="field-value" id="field-18" type="text"/></div>
+    </div>
+    <div class="grid-2">
+        <div class="field-group"><label class="field-label" for="field-19" data-i18n="f19">Daha Önce Okuduğu Mektep:</label><input class="field-value" id="field-19" type="text"/></div>
+        <div class="field-group"><label class="field-label" for="field-20" data-i18n="f20">Bildiği Lisanlar:</label><input class="field-value" id="field-20" type="text"/></div>
+    </div>
+    <div class="field-group"><label class="field-label" for="field-21" data-i18n="f21">Kronik Rahatsızlık / Alerji:</label><input class="field-value" id="field-21" type="text"/></div>
+
+    <div class="consent-row">
+        <input id="field-24" type="checkbox"/>
+        <label for="field-24" data-i18n="consent">Veli izni ve KVKK aydınlatma onayı alındı.</label>
+    </div>
+
+    <div class="divider-ornament">❖ ═══════════════════════════════ ❖</div>
+
+    <div class="approval-container">
+        <div class="approval-box">
+            <div class="approval-title" data-i18n="appr1">KAYIT YAPAN MEMUR</div>
+            <div class="approval-sub" data-i18n="appr1.sub">Adı Soyadı / İmza</div>
+            <div class="approval-line"></div>
+            <div class="approval-date"><label for="field-25" data-i18n="appr.date">Tarih:</label><input id="field-25" type="date"/></div>
+        </div>
+        <div class="approval-box"><div class="seal-circle" data-i18n="seal">DERNEK MÜHRÜ<br/>&amp; ONAY</div></div>
+        <div class="approval-box">
+            <div class="approval-title" data-i18n="appr2">MEKTEP / DERNEK MÜDÜRÜ</div>
+            <div class="approval-sub" data-i18n="appr2.sub">Tasdik Olunur</div>
+            <div class="approval-line"></div>
+            <div class="approval-date"><label for="field-26" data-i18n="appr.date">Tarih:</label><input id="field-26" type="date"/></div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="page-footer">
+    <span data-i18n="footer.left">Ehl-i Kur'ân Derneği Resmî Talebe Kayıt Evrakıdır</span>
+    <span data-i18n="footer.right">Varaka No: 02</span>
+</footer>
+
+</div>
+</div>
+</section>
+</form>
+
+<div class="print-all-container" id="print-all-container"></div>
+
+<div class="modal-overlay no-print" id="list-modal">
+    <div class="modal-box">
+        <div class="modal-header"><h2 data-i18n="modal.title">📋 Kayıtlı Talebeler</h2><button type="button" class="modal-close" id="list-close">✕</button></div>
+        <div class="modal-toolbar"><input type="search" id="list-search" placeholder="🔍 Ara..."/><span class="record-count" id="record-count">0</span></div>
+        <div class="modal-body" id="list-body"><p class="empty-msg" data-i18n="modal.empty">Henüz kayıtlı talebe yok.</p></div>
+        <div class="modal-footer">
+            <button type="button" class="modal-btn light" id="list-export" data-i18n="modal.csv">📄 CSV</button>
+            <button type="button" class="modal-btn excel" id="list-excel" data-i18n="modal.excel">📊 Excel</button>
+            <button type="button" class="modal-btn print-all" id="list-print-all" data-i18n="modal.printAll">🖨️ Hepsini Yazdır</button>
+            <button type="button" class="modal-btn danger" id="list-clear-all" data-i18n="modal.clearAll">🗑️ Tümünü Sil</button>
+            <button type="button" class="modal-btn" id="list-close-footer" data-i18n="modal.close">Kapat</button>
+        </div>
+    </div>
+</div>
+
+<div class="confirm-overlay no-print" id="confirm-overlay">
+    <div class="confirm-box">
+        <div class="confirm-header" id="confirm-title">Onay</div>
+        <div class="confirm-message" id="confirm-message">Emin misiniz?</div>
+        <div class="confirm-buttons">
+            <button type="button" class="confirm-btn cancel" id="confirm-cancel">İptal</button>
+            <button type="button" class="confirm-btn ok" id="confirm-ok">Tamam</button>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+"use strict";
+
+var I18N = {
+    tr: {
+        "btn.save": "Kaydet", "btn.list": "Liste", "btn.download": "İndir", "btn.print": "Yazdır", "btn.clear": "Temizle",
+        "meta.archive": "Kayıt No:", "meta.date": "Kayıt Tarihi:",
+        "logo.caption": "EHL-İ KUR'ÂN",
+        "header.org": "Ehl-i Kur'ân Derneği", "header.title": "Talebe Hüviyet ve Özlük Varakası", "header.subtitle": "Öğrenci Kayıt ve Takip Formu",
+        "photo.top": "SÛRET-İ ŞEMSİYYE", "photo.sub": "📷<br/>Resim Ekle<br/>(Tıklayınız)",
+        "sec1.title": "ŞAHSİYYAT VE KÜNYE", "sec1.latin": "I. ŞAHSİ BİLGİLER",
+        "sec2.title": "HANEDAN VE VELİ BİLGİLERİ", "sec2.latin": "II. AİLE VE İLETİŞİM",
+        "sec3.title": "TAHSİLAT VE DERS DURUMU", "sec3.latin": "III. EĞİTİM VE SAĞLIK",
+        "f1": "İsmi ve Şöhreti:", "f2": "T.C. Kimlik / Sicil No:", "f3": "Talebe Numarası:", "f4": "Sınıfı / Dairesi:", "f5": "Şubesi:",
+        "f6": "Doğum Yeri:", "f7": "Doğum Tarihi:", "f8": "Tabiiyeti (Uyruk):", "f9": "Kan Grubu:",
+        "f10": "Baba Adı:", "f11": "Baba Mesleği:", "f12": "Veli Yakınlığı:", "f13": "Veli Adı Soyadı:",
+        "f14": "İletişim Tel. (Birincil):", "f15": "İletişim Tel. (Yedek):", "f16": "Ev Adresi:", "f23": "E-posta:",
+        "f17": "Kayıt Tarihi:", "f18": "Hafızlık Seviyesi:", "f19": "Daha Önce Okuduğu Mektep:", "f20": "Bildiği Lisanlar:", "f21": "Kronik Rahatsızlık / Alerji:",
+        "consent": "Veli izni ve KVKK aydınlatma onayı alındı.",
+        "appr1": "KAYIT YAPAN MEMUR", "appr1.sub": "Adı Soyadı / İmza",
+        "appr2": "MEKTEP / DERNEK MÜDÜRÜ", "appr2.sub": "Tasdik Olunur",
+        "appr.date": "Tarih:", "seal": "DERNEK MÜHRÜ<br/>& ONAY",
+        "footer.left": "Ehl-i Kur'ân Derneği Resmî Talebe Kayıt Evrakıdır", "footer.right": "Varaka No: 02",
+        "modal.title": "📋 Kayıtlı Talebeler", "modal.empty": "Henüz kayıtlı talebe yok.", "modal.csv": "📄 CSV", "modal.excel": "📊 Excel", "modal.printAll": "🖨️ Hepsini Yazdır", "modal.clearAll": "🗑️ Tümünü Sil", "modal.close": "Kapat"
+    },
+    osmanlica: {
+        "btn.save": "قاید", "btn.list": "لِسْتَه", "btn.download": "تلفونه قاید", "btn.print": "طَبْع / PDF", "btn.clear": "تَمِیزْلَه",
+        "meta.archive": "قاید نمبره‌سی:", "meta.date": "قاید تَارِیخِی:",
+        "logo.caption": "اهلِ قرآن",
+        "header.org": "اهلِ قرآن درنه‌گی", "header.title": "طلبه هویّت و اوزلوک ورقه‌سی", "header.subtitle": "طلبه قاید و تعقیب ورقه‌سی",
+        "photo.top": "صورتِ شمسیه", "photo.sub": "تصویر اکلَمک ایچون<br/>تَکْلایڭ",
+        "sec1.title": "شَخْصِیَّات و کُنْیَه", "sec1.latin": "I. ŞAHSİ BİLGİLER",
+        "sec2.title": "خاندان و وَلِی معلومات", "sec2.latin": "II. AİLE VE İLETİŞİM",
+        "sec3.title": "تحصیل و درس حالتِی", "sec3.latin": "III. EĞİTİM VE SAĞLIK",
+        "f1": "اِسْم و شُهْرَت:", "f2": "ت.ج. كِمْلِك / سِجِل نُمْرَه‌سِی:", "f3": "طَلَبَه نُمْرَه‌سِی:", "f4": "سِنِیف / دَائِرَه‌سِی:", "f5": "شُعْبَه‌سِی:",
+        "f6": "مَحَلِّ وِلادَت:", "f7": "تَارِیخِ وِلادَت:", "f8": "تَابِعِیَّت:", "f9": "قان گُرُبُو:",
+        "f10": "پَدَرِ اَدی:", "f11": "پَدَرِ مِصْلَک:", "f12": "وَلِی قَرِیبْلِیگِی:", "f13": "وَلِی اِسْم و شُهْرَت:",
+        "f14": "اِرْتِباط تِلِفُونُو:", "f15": "یِدَک تِلِفُونُو:", "f16": "اِقامَتگاهِ عائله:", "f23": "اِلِکترونیک پوسته:",
+        "f17": "مَکْتَبَه دُخُول تَارِیخِی:", "f18": "حِفْظِ قُرْآن سِوِیَّه‌سِی:", "f19": "دَها اَوْوَل اوْخُدُغُو مَکْتَب:", "f20": "بِلْدِگِی لِسانلَر:", "f21": "مُزْمِن رَاهَتْسِزْلِق:",
+        "consent": "وَلِی اِذْنِی و کِی‌وِی‌کِی مُوافَقَتِ آلِندی.",
+        "appr1": "KAYIT YAPAN MEMUR", "appr1.sub": "Adı Soyadı / İmza",
+        "appr2": "MEKTEP / DERNEK MÜDÜRÜ", "appr2.sub": "Tasdik Olunur",
+        "appr.date": "Tarih:", "seal": "DERNEK MÜHRÜ<br/>& ONAY",
+        "footer.left": "اهلِ قرآن درنه‌گی رسمی طلبه قاید ورقه‌سی", "footer.right": "ورقه نمبره‌سی: ۰۲",
+        "modal.title": "📋 Kayıtlı Talebeler", "modal.empty": "Henüz kayıtlı talebe yok.", "modal.csv": "📄 CSV", "modal.excel": "📊 Excel", "modal.printAll": "🖨️ Hepsini Yazdır", "modal.clearAll": "🗑️ Tümünü Sil", "modal.close": "Kapat"
+    }
+};
+
+var LANG_KEY = "ehl_form_lang_v1";
+function getLang() { try { var l = localStorage.getItem(LANG_KEY); return l === "osmanlica" ? "osmanlica" : "tr"; } catch (e) { return "tr"; } }
+function setLang(lang) { try { localStorage.setItem(LANG_KEY, lang); } catch (e) {} }
+
+function applyLanguage(lang) {
+    var dict = I18N[lang] || I18N.tr;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        var key = el.getAttribute("data-i18n");
+        if (dict[key] != null) {
+            if (dict[key].indexOf("<br") >= 0) el.innerHTML = dict[key];
+            else el.textContent = dict[key];
+        }
+    });
+    document.body.classList.remove("lang-tr", "lang-ottoman");
+    document.body.classList.add(lang === "osmanlica" ? "lang-ottoman" : "lang-tr");
+    var t = document.getElementById("btn-lang-text");
+    if (t) t.textContent = lang === "osmanlica" ? "عثمانلیجه" : "TR";
+    updateCount();
+}
+
+function $(id) { return document.getElementById(id); }
+function setStatus(m) {
+    var el = $("save-status"); if (!el) return;
+    el.textContent = m || "";
+    clearTimeout(window.__st);
+    if (m) window.__st = setTimeout(function () { el.textContent = ""; }, 3000);
+}
+function safeCall(fn, label) {
+    return function (ev) { try { fn.call(this, ev); } catch (e) { console.error(label, e); setStatus("❌ " + label + ": " + (e.message || e)); } };
+}
+function fmtDate(iso) {
+    if (!iso) return "";
+    try { var d = new Date(iso); return String(d.getDate()).padStart(2,"0") + "." + String(d.getMonth()+1).padStart(2,"0") + "." + d.getFullYear() + " " + String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0"); }
+    catch (e) { return iso; }
+}
+function esc(s) { return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function dateToText(val) {
+    if (!val) return "";
+    var p = String(val).split("-");
+    if (p.length === 3) return p[2] + "." + p[1] + "." + p[0];
+    return val;
+}
+
+var DRAFT_KEY = "ehl_form_draft_v4";
+var RECORDS_KEY = "ehl_form_records_v4";
+var PHOTO_MAX = 640;
+var PHOTO_QUALITY = 0.82;
+
+var memStore = {};
+function storageGet(k) { try { var v = localStorage.getItem(k); return v != null ? v : (memStore[k] || null); } catch (e) { return memStore[k] || null; } }
+function storageSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { memStore[k] = v; } }
+function storageRemove(k) { try { localStorage.removeItem(k); } catch (e) { delete memStore[k]; } }
+
+var confirmCb = null;
+function showConfirm(msg, onOk, onCancel, title, danger) {
+    var ov = $("confirm-overlay"); if (!ov) { if (onOk) onOk(); return; }
+    if ($("confirm-message")) $("confirm-message").textContent = msg;
+    if ($("confirm-title")) $("confirm-title").textContent = title || "Onay";
+    if ($("confirm-ok")) { if (danger) $("confirm-ok").classList.add("danger"); else $("confirm-ok").classList.remove("danger"); }
+    ov.classList.add("open");
+    confirmCb = { onOk: onOk, onCancel: onCancel };
+}
+function confirmOk() { var ov = $("confirm-overlay"); if (ov) ov.classList.remove("open"); if (confirmCb && confirmCb.onOk) confirmCb.onOk(); confirmCb = null; }
+function confirmCancel() { var ov = $("confirm-overlay"); if (ov) ov.classList.remove("open"); if (confirmCb && confirmCb.onCancel) confirmCb.onCancel(); confirmCb = null; }
+
+function getState() {
+    var form = $("student-form"); var st = { fields: {}, photo: "" };
+    if (!form) return st;
+    form.querySelectorAll("input, textarea, select").forEach(function (el) {
+        if (!el.id || el.type === "file") return;
+        if (el.type === "radio" || el.type === "checkbox") st.fields[el.id] = { type: el.type, checked: el.checked };
+        else st.fields[el.id] = { type: el.type, value: el.value };
+    });
+    var p = $("photo-preview");
+    if (p && p.src && p.style.display !== "none") st.photo = p.src;
+    return st;
+}
+function applyState(st) {
+    if (!st) return;
+    var f = st.fields || {};
+    Object.keys(f).forEach(function (id) {
+        var el = $(id), it = f[id]; if (!el || !it) return;
+        if (it.type === "radio" || it.type === "checkbox") el.checked = !!it.checked;
+        else el.value = it.value != null ? it.value : "";
+    });
+    var p = $("photo-preview"), r = $("remove-photo-btn");
+    if (p) {
+        if (st.photo) { p.src = st.photo; p.style.display = "block"; if (r) r.style.display = "block"; }
+        else { p.removeAttribute("src"); p.style.display = "none"; if (r) r.style.display = "none"; }
+    }
+}
+
+function loadRecords() { try { var raw = storageGet(RECORDS_KEY); if (!raw) return []; var a = JSON.parse(raw); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+function saveRecords(recs) { try { storageSet(RECORDS_KEY, JSON.stringify(recs)); return true; } catch (e) { setStatus("❌ Depolama hatası"); return false; } }
+function genId() { return "r_" + Date.now() + "_" + Math.random().toString(36).slice(2,8); }
+function getSummary(st) {
+    var f = st.fields || {};
+    return {
+        name: ((f["field-1"] && f["field-1"].value) || "").trim() || "(İsimsiz)",
+        tc: ((f["field-2"] && f["field-2"].value) || "").trim(),
+        no: ((f["field-3"] && f["field-3"].value) || "").trim()
+    };
+}
+function saveDraft() { try { storageSet(DRAFT_KEY, JSON.stringify(getState())); return true; } catch (e) { return false; } }
+function restoreDraft() { try { var raw = storageGet(DRAFT_KEY); if (raw) applyState(JSON.parse(raw)); } catch (e) {} }
+function updateCount() { var el = $("record-count"); if (!el) return; el.textContent = loadRecords().length + " kayıt"; }
+
+function saveToRecords() {
+    try {
+        var st = getState(); var sum = getSummary(st);
+        if (!sum.name || sum.name === "(İsimsiz)") {
+            setStatus("⚠️ İsim alanını doldurun");
+            if ($("field-1")) { $("field-1").focus(); $("field-1").scrollIntoView({ behavior: "smooth", block: "center" }); }
+            return;
+        }
+        var recs = loadRecords(); var idx = -1;
+        if (sum.tc) for (var i = 0; i < recs.length; i++) if (recs[i].summary && recs[i].summary.tc === sum.tc) { idx = i; break; }
+        if (idx >= 0) {
+            recs[idx].summary = sum; recs[idx].data = st; recs[idx].updatedAt = new Date().toISOString();
+            if (saveRecords(recs)) { setStatus("✏️ Güncellendi: " + sum.name); renderRecords(); }
+            return;
+        }
+        recs.unshift({ id: genId(), summary: sum, data: st, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+        if (saveRecords(recs)) { setStatus("✅ Kaydedildi: " + sum.name); renderRecords(); }
+    } catch (e) { setStatus("❌ " + (e.message || e)); }
+}
+
+function openList() { renderRecords(); var m = $("list-modal"); if (m) { m.classList.add("open"); document.body.style.overflow = "hidden"; } }
+function closeList() { var m = $("list-modal"); if (m) m.classList.remove("open"); document.body.style.overflow = ""; }
+
+function renderRecords() {
+    var body = $("list-body"); if (!body) return;
+    var recs = loadRecords();
+    var q = $("list-search") ? $("list-search").value.trim().toLowerCase() : "";
+    if (q) recs = recs.filter(function (r) {
+        var n = (r.summary && r.summary.name || "").toLowerCase();
+        var t = (r.summary && r.summary.tc || "").toLowerCase();
+        var s = (r.summary && r.summary.no || "").toLowerCase();
+        return n.indexOf(q) >= 0 || t.indexOf(q) >= 0 || s.indexOf(q) >= 0;
+    });
+    updateCount();
+    if (!recs.length) { body.innerHTML = '<p class="empty-msg">' + (q ? "Sonuç yok." : "Henüz kayıt yok.") + '</p>'; return; }
+    var html = "";
+    recs.forEach(function (r) {
+        var ph = r.data && r.data.photo ? '<img src="' + r.data.photo + '" alt="">' : "👤";
+        html += '<div class="record-item"><div class="record-thumb">' + ph + '</div><div class="record-info">';
+        html += '<div class="record-name">' + esc(r.summary.name) + '</div><div class="record-meta">';
+        if (r.summary.tc) html += '<span>🆔 ' + esc(r.summary.tc) + '</span>';
+        if (r.summary.no) html += '<span>📚 ' + esc(r.summary.no) + '</span>';
+        html += '<span>🕒 ' + fmtDate(r.updatedAt || r.createdAt) + '</span></div></div>';
+        html += '<div class="record-actions"><button type="button" class="open" data-action="open" data-id="' + r.id + '">Aç</button>';
+        html += '<button type="button" class="del" data-action="delete" data-id="' + r.id + '">Sil</button></div></div>';
+    });
+    body.innerHTML = html;
+}
+
+function openRecordById(id) {
+    var recs = loadRecords(); var r = recs.find(function (x) { return x.id === id; });
+    if (!r) return;
+    applyState(r.data); saveDraft(); closeList();
+    setStatus('"' + r.summary.name + '" yüklendi');
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function deleteRecordById(id) {
+    var recs = loadRecords(); var r = recs.find(function (x) { return x.id === id; });
+    if (!r) return;
+    showConfirm('"' + r.summary.name + '" silinsin mi?', function () {
+        if (saveRecords(recs.filter(function (x) { return x.id !== id; }))) { renderRecords(); setStatus("🗑️ Silindi"); }
+    }, null, "🗑️ Sil", true);
+}
+function clearAllRecords() {
+    var recs = loadRecords();
+    if (!recs.length) return;
+    showConfirm(recs.length + " kayıt silinecek. Emin misiniz?", function () {
+        if (saveRecords([])) { renderRecords(); setStatus("🗑️ Hepsi silindi"); }
+    }, null, "⚠️ Tümünü Sil", true);
+}
+
+function exportCsv() {
+    var recs = loadRecords();
+    if (!recs.length) { setStatus("Liste boş"); return; }
+    var rows = [["Ad Soyad", "TC", "Öğrenci No", "Kayıt Tarihi"]];
+    recs.forEach(function (r) { rows.push([r.summary.name, r.summary.tc, r.summary.no, fmtDate(r.updatedAt || r.createdAt)]); });
+    var csv = rows.map(function (row) { return row.map(function (c) { return '"' + String(c == null ? "" : c).replace(/"/g, '""') + '"'; }).join(";"); }).join("\r\n");
+    try {
+        var blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a"); a.href = url; a.download = "talebe-listesi-" + new Date().toISOString().slice(0,10) + ".csv";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+        setStatus("📄 CSV indirildi");
+    } catch (e) { setStatus("⚠️ CSV desteklenmiyor"); }
+}
+
+function exportExcel() {
+    var recs = loadRecords();
+    if (!recs.length) { setStatus("Liste boş"); return; }
+    var html = '<html xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"/>';
+    html += '<style>td,th{border:1px solid #999;padding:5px;font-family:Arial;font-size:11pt;} th{background:#6d1a1c;color:#fff;font-weight:bold;}</style>';
+    html += '</head><body><table>';
+    html += '<tr><th>#</th><th>Ad Soyad</th><th>TC Kimlik</th><th>Öğrenci No</th><th>Sınıfı</th><th>Baba Adı</th><th>Tel (Birincil)</th><th>Adres</th><th>Doğum Yeri</th><th>Kayıt Tarihi</th></tr>';
+    recs.forEach(function (r, i) {
+        var f = r.data && r.data.fields || {};
+        function v(id) { return esc((f[id] && f[id].value) || ""); }
+        html += '<tr>';
+        html += '<td>' + (i + 1) + '</td>';
+        html += '<td>' + v("field-1") + '</td>';
+        html += '<td>' + v("field-2") + '</td>';
+        html += '<td>' + v("field-3") + '</td>';
+        html += '<td>' + v("field-4") + '</td>';
+        html += '<td>' + v("field-10") + '</td>';
+        html += '<td>' + v("field-14") + '</td>';
+        html += '<td>' + v("field-16") + '</td>';
+        html += '<td>' + v("field-6") + '</td>';
+        html += '<td>' + esc(fmtDate(r.updatedAt || r.createdAt)) + '</td>';
+        html += '</tr>';
+    });
+    html += '</table></body></html>';
+    try {
+        var blob = new Blob(["\uFEFF" + html], { type: "application/vnd.ms-excel;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a"); a.href = url;
+        a.download = "talebe-listesi-" + new Date().toISOString().slice(0,10) + ".xls";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+        setStatus("📊 Excel indirildi");
+    } catch (e) { setStatus("⚠️ Excel desteklenmiyor"); }
+}
+
+function printAllRecords() {
+    var recs = loadRecords();
+    if (!recs.length) { setStatus("Liste boş"); return; }
+    var container = $("print-all-container"); if (!container) return;
+    container.innerHTML = "";
+    var template = document.querySelector("form#student-form .page");
+    if (!template) return;
+    var lang = getLang();
+    var dict = I18N[lang] || I18N.tr;
+    
+    recs.forEach(function (r) {
+        var clone = template.cloneNode(true);
+        // Data-i18n çevirilerini uygula
+        clone.querySelectorAll("[data-i18n]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n");
+            if (dict[key] != null) {
+                if (dict[key].indexOf("<br") >= 0) el.innerHTML = dict[key];
+                else el.textContent = dict[key];
+            }
+        });
+        // Değerleri doldur
+        var f = r.data && r.data.fields || {};
+        Object.keys(f).forEach(function (id) {
+            var el = clone.querySelector("#" + id); if (!el) return;
+            var it = f[id];
+            if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+                if (el.type === "checkbox" || el.type === "radio") el.checked = !!it.checked;
+                else el.value = it.value != null ? it.value : "";
+            }
+        });
+        // Tarih inputlarını metne çevir (yazdırmada görünsün)
+        clone.querySelectorAll("input[type='date']").forEach(function (inp) {
+            var txt = dateToText(inp.value);
+            var span = document.createElement("span");
+            span.className = "field-value";
+            span.style.display = "inline-block";
+            span.style.padding = "1px 2px";
+            span.style.minHeight = "18px";
+            span.style.color = "#1a1615";
+            span.style.flexGrow = "1";
+            span.textContent = txt;
+            inp.parentNode.replaceChild(span, inp);
+        });
+        // Fotoğrafı ekle
+        var photo = clone.querySelector("#photo-preview");
+        if (photo && r.data && r.data.photo) {
+            photo.src = r.data.photo;
+            photo.style.display = "block";
+        }
+        // Interactive öğeleri temizle
+        clone.querySelectorAll(".no-print").forEach(function (el) { el.remove(); });
+        container.appendChild(clone);
+    });
+    
+    document.body.classList.add("printing-all");
+    closeList();
+    setTimeout(function () {
+        window.print();
+        setTimeout(function () { document.body.classList.remove("printing-all"); container.innerHTML = ""; }, 800);
+    }, 200);
+}
+
+function triggerPhoto() { var inp = $("photo-upload"); if (inp) inp.click(); }
+function previewImage(ev) {
+    var file = ev.target.files && ev.target.files[0]; if (!file) return;
+    if (!file.type || file.type.indexOf("image/") !== 0) { ev.target.value = ""; setStatus("Lütfen resim seçin"); return; }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var img = new Image();
+        img.onload = function () {
+            var canvas = document.createElement("canvas");
+            var w = img.width, h = img.height;
+            if (w > h && w > PHOTO_MAX) { h = h * PHOTO_MAX / w; w = PHOTO_MAX; }
+            else if (h >= w && h > PHOTO_MAX) { w = w * PHOTO_MAX / h; h = PHOTO_MAX; }
+            canvas.width = Math.round(w); canvas.height = Math.round(h);
+            canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+            var dataUrl = canvas.toDataURL("image/jpeg", PHOTO_QUALITY);
+            if ($("photo-preview")) { $("photo-preview").src = dataUrl; $("photo-preview").style.display = "block"; }
+            if ($("remove-photo-btn")) $("remove-photo-btn").style.display = "block";
+            saveDraft(); setStatus("📷 Eklendi");
+        };
+        img.onerror = function () { setStatus("Fotoğraf okunamadı"); };
+        img.src = e.target.result;
+    };
+    reader.onerror = function () { setStatus("Dosya okunamadı"); };
+    reader.readAsDataURL(file);
+    ev.target.value = "";
+}
+function removePhoto(ev) {
+    if (ev) { ev.stopPropagation(); ev.preventDefault(); }
+    if ($("photo-preview")) { $("photo-preview").removeAttribute("src"); $("photo-preview").style.display = "none"; }
+    if ($("remove-photo-btn")) $("remove-photo-btn").style.display = "none";
+    if ($("photo-upload")) $("photo-upload").value = "";
+    saveDraft(); setStatus("📷 Kaldırıldı");
+}
+
+function clearForm() {
+    showConfirm("Formdaki tüm bilgiler ve fotoğraf silinsin mi?\n(Kayıtlı liste SİLİNMEZ)", function () {
+        var form = $("student-form"); if (!form) return;
+        form.querySelectorAll("input, textarea, select").forEach(function (el) {
+            if (el.type === "file") { try { el.value = ""; } catch (e) {} }
+            else if (el.type === "checkbox" || el.type === "radio") el.checked = false;
+            else el.value = "";
+        });
+        try { form.reset(); } catch (e) {}
+        if ($("photo-preview")) { $("photo-preview").removeAttribute("src"); $("photo-preview").style.display = "none"; }
+        if ($("remove-photo-btn")) $("remove-photo-btn").style.display = "none";
+        if ($("photo-upload")) $("photo-upload").value = "";
+        storageRemove(DRAFT_KEY);
+        setStatus("🧹 Temizlendi");
+    }, null, "🧹 Temizle");
+}
+
+function downloadForm() {
+    try {
+        saveDraft();
+        var clone = document.cloneNode(true);
+        document.querySelectorAll("input, textarea, select").forEach(function (s) {
+            if (!s.id) return;
+            var t = clone.getElementById(s.id); if (!t) return;
+            if (s.type === "file") { t.value = ""; return; }
+            if (s.type === "checkbox" || s.type === "radio") { if (s.checked) t.setAttribute("checked","checked"); else t.removeAttribute("checked"); return; }
+            t.setAttribute("value", s.value || "");
+        });
+        var p = document.getElementById("photo-preview"), tp = clone.getElementById("photo-preview");
+        if (p && tp && p.src && p.style.display !== "none") { tp.setAttribute("src", p.src); tp.style.display = "block"; }
+        clone.querySelectorAll(".form-toolbar, .modal-overlay, .confirm-overlay, .no-print, .print-all-container").forEach(function (el) { el.remove(); });
+        var html = "<!DOCTYPE html>\n" + clone.documentElement.outerHTML;
+        var filename = "ehl-talebe-" + new Date().toISOString().slice(0,10) + ".html";
+        if (navigator.share) {
+            try {
+                var file = new File([html], filename, { type: "text/html" });
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    navigator.share({ files: [file], title: "Talebe Formu" }).catch(function () {});
+                    return;
+                }
+            } catch (e) {}
+        }
+        var blob = new Blob([html], { type: "text/html;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a"); a.href = url; a.download = filename; a.style.display = "none";
+        document.body.appendChild(a); a.click();
+        setTimeout(function () { try { document.body.removeChild(a); } catch (e) {} URL.revokeObjectURL(url); }, 500);
+        setStatus("📥 İndirildi");
+    } catch (e) { setStatus("❌ " + (e.message || e)); }
+}
+
+function toggleLang() {
+    var cur = getLang(); var next = cur === "tr" ? "osmanlica" : "tr";
+    setLang(next); applyLanguage(next);
+    setStatus(next === "tr" ? "🇹🇷 Türkçe" : "🕌 Osmanlıca");
+}
+
+window.addEventListener("error", function (e) { console.error("[JS]", e.message); });
+
+document.addEventListener("DOMContentLoaded", function () {
+    applyLanguage(getLang());
+    restoreDraft();
+
+    if ($("btn-lang")) $("btn-lang").addEventListener("click", toggleLang);
+    if ($("btn-save")) $("btn-save").addEventListener("click", safeCall(saveToRecords, "Kaydet"));
+    if ($("btn-list")) $("btn-list").addEventListener("click", safeCall(openList, "Liste"));
+    if ($("btn-download")) $("btn-download").addEventListener("click", safeCall(downloadForm, "İndir"));
+    if ($("btn-print")) $("btn-print").addEventListener("click", function () { window.print(); });
+    if ($("btn-clear")) $("btn-clear").addEventListener("click", safeCall(clearForm, "Temizle"));
+
+    if ($("confirm-ok")) $("confirm-ok").addEventListener("click", confirmOk);
+    if ($("confirm-cancel")) $("confirm-cancel").addEventListener("click", confirmCancel);
+
+    if ($("photo-box")) {
+        $("photo-box").addEventListener("click", function (e) { if (e.target && e.target.id === "remove-photo-btn") return; triggerPhoto(); });
+        $("photo-box").addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); triggerPhoto(); } });
+    }
+    if ($("remove-photo-btn")) $("remove-photo-btn").addEventListener("click", safeCall(removePhoto, "Sil"));
+    if ($("photo-upload")) $("photo-upload").addEventListener("change", safeCall(previewImage, "Yükle"));
+
+    if ($("list-modal")) $("list-modal").addEventListener("click", function (e) { if (e.target === $("list-modal")) closeList(); });
+    if ($("list-close")) $("list-close").addEventListener("click", closeList);
+    if ($("list-close-footer")) $("list-close-footer").addEventListener("click", closeList);
+    if ($("list-search")) $("list-search").addEventListener("input", renderRecords);
+    if ($("list-export")) $("list-export").addEventListener("click", safeCall(exportCsv, "CSV"));
+    if ($("list-excel")) $("list-excel").addEventListener("click", safeCall(exportExcel, "Excel"));
+    if ($("list-print-all")) $("list-print-all").addEventListener("click", safeCall(printAllRecords, "Hepsini Yazdır"));
+    if ($("list-clear-all")) $("list-clear-all").addEventListener("click", safeCall(clearAllRecords, "Sil"));
+
+    if ($("list-body")) $("list-body").addEventListener("click", function (e) {
+        var b = e.target.closest("button[data-action]"); if (!b) return;
+        var action = b.getAttribute("data-action"); var id = b.getAttribute("data-id"); if (!id) return;
+        if (action === "open") openRecordById(id);
+        else if (action === "delete") deleteRecordById(id);
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            if ($("list-modal") && $("list-modal").classList.contains("open")) closeList();
+            if ($("confirm-overlay") && $("confirm-overlay").classList.contains("open")) confirmCancel();
+        }
+    });
+
+    var form = $("student-form");
+    if (form) {
+        var timer;
+        var autoSave = function () { clearTimeout(timer); timer = setTimeout(saveDraft, 500); };
+        form.addEventListener("input", autoSave);
+        form.addEventListener("change", autoSave);
+    }
+});
+
+})();
+</script>
+</body>
+</html>
